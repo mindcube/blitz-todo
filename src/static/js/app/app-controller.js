@@ -28,11 +28,13 @@ define(function(require, exports, module) {
             // instantiate todo collection
             var TodoCollection = new this.app.TodoCollection();
 
+            // populate todo model collection
             TodoCollection.fetch();
 
             // define views
             this.app.HeaderView = require('app/todo/views/header');
             this.app.MainView = require('app/todo/views/main');
+            this.app.FooterView = require('app/todo/views/footer');
 
             // instantiate views
             var headerView = new this.app.HeaderView({
@@ -41,32 +43,6 @@ define(function(require, exports, module) {
             var mainView = new this.app.MainView({
                 collection: TodoCollection
             });
-
-            // footer
-            footerTemplate = require('hbs!app/todo/templates/footer');
-
-            this.app.FooterView = marionette.Layout.extend({
-                template: footerTemplate,
-
-                ui: {
-                    count: '#todo-count strong'
-                },
-
-                initialize: function () {
-                    this.listenTo(this.collection, 'all', this.update, this);
-                },
-
-                update: function () {
-                    this.ui.count.html(this.collection.length);
-                },
-
-                serializeData: function () {
-                    return {
-                        totalCount: this.collection.length,
-                    };
-                },
-            });
-
             var footerView = new this.app.FooterView({
                 collection: TodoCollection
             });
