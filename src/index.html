@@ -5,7 +5,11 @@
         <title>default title</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" media="all" href="static/css/bootstrap.css"/>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" media="all" href="static/css/styles.css"/>
+
         <script type="text/javascript" src="static/js/vendor/require.js"></script>
         <script type="text/javascript">
         require(['static/js/common'], function (common) {
@@ -14,8 +18,19 @@
         </script>
     </head>
     <body>
-        <div id="modal"></div>
-        <div id="activity"></div>
-        <div id="window"></div>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <span class="brand">TODO Manager / BLITZ Challenge numero uno</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="header" class="container"></div>
+        <div id="main" class="container"></div>
+        <div id="footer" class="container"></div>
+
+
     </body>
 </html>
