@@ -10,6 +10,14 @@ define(function(require, exports, module) {
     var keys = require('built/app/keys');
     var app = require('app/app');
 
+    // app requirements
+    var TodoCollection = require('app/todo/collections/todos').TodoCollection;
+    var todo_collection = new TodoCollection();
+
+    var HeaderView = require('app/todo/views/header').HeaderView;
+    var MainView = require('app/todo/views/main').MainView;
+    var FooterView = require('app/todo/views/footer').FooterView;
+
     var AppController = marionette.Controller.extend({
 
         initialize: function(options) {
@@ -18,40 +26,48 @@ define(function(require, exports, module) {
             // You can customize that as necessary.
             this.BUILT();
             this.app = app;
+
+            window.todo = todo_collection;
+
+            // instantiate views
+            var header_view = new HeaderView({
+                collection: todo_collection
+            });
+            var main_view = new MainView({
+                collection: todo_collection
+            });
+            var footer_view = new FooterView({
+                collection: todo_collection
+            });
+
+            // show views
+            this.app.header.show(header_view);
+            this.app.main.show(main_view);
+            this.app.footer.show(footer_view);
         },
 
         index: function() {
 
-            // define Todo model and collection
-            this.app.TodoCollection = require('app/todo/collections/todos');
+            todo_collection.fetch();
 
-            // instantiate todo collection
-            var TodoCollection = new this.app.TodoCollection();
+            console.log('This is index route');
 
-            // populate todo model collection
-            TodoCollection.fetch();
+        },
 
-            // define views
-            this.app.HeaderView = require('app/todo/views/header');
-            this.app.MainView = require('app/todo/views/main');
-            this.app.FooterView = require('app/todo/views/footer');
+        active: function() {
 
-            // instantiate views
-            var headerView = new this.app.HeaderView({
-                collection: TodoCollection
-            });
-            var mainView = new this.app.MainView({
-                collection: TodoCollection
-            });
-            var footerView = new this.app.FooterView({
-                collection: TodoCollection
-            });
+            todo_collection.fetch();
+            todo_collection.reset(todo_collection.displayActiveTasks());
 
-            // show views
-            this.app.header.show(headerView);
-            this.app.main.show(mainView);
-            this.app.footer.show(footerView);
+            console.log('#active');
+        },
 
+        completed: function() {
+
+            todo_collection.fetch();
+            todo_collection.reset(todo_collection.displayCompletedTasks());
+
+            console.log('#completed');
         },
 
         BUILT: function() {
@@ -60,9 +76,7 @@ define(function(require, exports, module) {
             // If you are not using the modal system,
             // but are using the key system, you can omit
             // the dictionary passed here.
-            keys.initialize({
-                modals: modals
-            });
+            keys.initialize();
 
             // The responder chain is a stack of views/controllers.
             // When a key event is detected, the stack is searched

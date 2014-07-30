@@ -2,7 +2,7 @@ define(function(require, exports, module) {
     var Marionette = require('marionette');
     var headerTemplate = require('hbs!app/todo/templates/header');
 
-    return Marionette.ItemView.extend({
+    var HeaderView = Marionette.ItemView.extend({
         template: headerTemplate,
 
         ui: {
@@ -27,4 +27,7 @@ define(function(require, exports, module) {
             }
         }
     });
+
+
+    exports.HeaderView = HeaderView;
 });

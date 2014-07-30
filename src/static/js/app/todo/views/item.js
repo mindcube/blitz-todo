@@ -2,7 +2,7 @@ define(function(require, exports, module) {
     var Marionette = require('marionette');
     var todoItemTemplate = require('hbs!app/todo/templates/item');
 
-    return Marionette.CompositeView.extend({
+    var Item = Marionette.CompositeView.extend({
         className: 'active',
         tagName: 'tr',
         template: todoItemTemplate,
@@ -27,4 +27,6 @@ define(function(require, exports, module) {
             this.model.toggle().save();
         },
     });
+
+    exports.Item = Item;
 });

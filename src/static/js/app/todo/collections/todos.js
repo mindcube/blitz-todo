@@ -4,10 +4,26 @@ define(function(require, exports, module) {
     var Todo = require('app/todo/models/todo');
     var localStorage = require('localStorage');
 
-    return Backbone.Collection.extend({
+    var TodoCollection = Backbone.Collection.extend({
         localStorage: new Backbone.LocalStorage("todos"),
 
         model: Todo,
+
+        displayActiveTasks: function() {
+            return this.filter(function(task) {
+                if (task.get('completed'))
+                    return true;
+            });
+        },
+
+        displayCompletedTasks: function() {
+            return this.filter(function(task) {
+                if (!task.get('completed'))
+                    return true;
+            });
+        }
     });
+
+    exports.TodoCollection = TodoCollection;
 
 });

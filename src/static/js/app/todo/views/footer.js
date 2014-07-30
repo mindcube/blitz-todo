@@ -3,7 +3,7 @@ define(function(require, exports, module) {
 
     footerTemplate = require('hbs!app/todo/templates/footer');
 
-    return Marionette.Layout.extend({
+    var FooterView = Marionette.Layout.extend({
         template: footerTemplate,
 
         ui: {
@@ -11,7 +11,8 @@ define(function(require, exports, module) {
         },
 
         initialize: function () {
-            this.listenTo(this.collection, 'all', this.update, this);
+            //this.listenTo(this.collection, 'all', this.update, this);
+            // this.listenTo(this.collection, 'all remove', this.update, this);
         },
 
         update: function () {
@@ -24,4 +25,6 @@ define(function(require, exports, module) {
             };
         },
     });
+
+    exports.FooterView = FooterView;
 });

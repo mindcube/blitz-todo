@@ -6,7 +6,9 @@ define(function (require, exports, module) {
     var AppRouter  =  marionette.AppRouter.extend({
         controller: new AppController(),
         appRoutes:{
-            '*index':'index',
+            'active':'active',
+            'completed':'completed',
+            '*index':'index'
         }
     });
 
