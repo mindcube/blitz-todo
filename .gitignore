@@ -7,3 +7,4 @@ dist
 collected-static/
 *.css
 .sass-cache
+node_modules/

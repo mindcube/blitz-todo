@@ -27,7 +27,7 @@ define(function(require, exports, module) {
             this.BUILT();
             this.app = app;
 
-            window.todo = todo_collection;
+            window.todo_collection = todo_collection;
 
             // instantiate views
             var header_view = new HeaderView({
