@@ -48,6 +48,7 @@ define(function(require, exports, module) {
 
         index: function() {
 
+            todo_collection.reset();
             todo_collection.fetch();
 
             console.log('This is index route');

@@ -8,7 +8,7 @@ define(function(require, exports, module) {
         tagName: 'table',
         template: mainTemplate,
         itemView: itemView,
-        itemViewContainer: 'tbody'
+        itemViewContainer: 'tbody',
     });
 
     exports.MainView = MainView;

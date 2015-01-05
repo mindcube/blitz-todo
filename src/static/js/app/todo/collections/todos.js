@@ -9,16 +9,20 @@ define(function(require, exports, module) {
 
         model: Todo,
 
+        comparator: function(s) {
+            return -s.get('date_created');
+        },
+
         displayActiveTasks: function() {
             return this.filter(function(task) {
-                if (task.get('completed'))
+                if (!task.get('completed'))
                     return true;
             });
         },
 
         displayCompletedTasks: function() {
             return this.filter(function(task) {
-                if (!task.get('completed'))
+                if (task.get('completed'))
                     return true;
             });
         }

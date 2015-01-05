@@ -10,6 +10,10 @@ define(function(require, exports, module) {
             count: '#todo-count strong'
         },
 
+        events: {
+            'click #clear-completed': 'clearCompleted',
+        },
+
         initialize: function () {
             //this.listenTo(this.collection, 'all', this.update, this);
             // this.listenTo(this.collection, 'all remove', this.update, this);
@@ -24,6 +28,10 @@ define(function(require, exports, module) {
                 totalCount: this.collection.length,
             };
         },
+
+        clearCompleted: function() {
+            console.log(this);
+        }
     });
 
     exports.FooterView = FooterView;

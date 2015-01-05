@@ -5,7 +5,8 @@ define(function(require, exports, module) {
     return Backbone.Model.extend({
         defaults: {
             name: '',
-            completed: false
+            completed: false,
+            date_created: Date.now()
         },
 
         toggle: function () {

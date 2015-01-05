@@ -6,15 +6,17 @@ var TodoCollection = require('app/todo/collections/todos').TodoCollection;
 
 var HeaderView = require('app/todo/views/header').HeaderView;
 
-describe("Todo app", function(){
+describe("Todo app collection", function(){
 
     var todo_collection;
     var header_view;
     var testitem;
 
-    it('creates an empty collection of todo tasks', function() {
+    beforeEach(function(){
         todo_collection = new TodoCollection();
+    });
 
+    it('creates an empty collection of todo tasks', function() {
         expect(todo_collection).toBeDefined();
         expect(todo_collection.length).toEqual(0)
     });
@@ -30,6 +32,10 @@ describe("Todo app", function(){
 
         expect(todo_collection.length).toEqual(0);
     });
+});
+
+describe("Todo app view", function(){
+
 });
 
 });
