@@ -1,22 +1,23 @@
 define(function(require, exports, module) {
 
-    var $ = require('jquery');
-    var Backbone = require('backbone');
-    var localStorage = require('localStorage');
-    var marionette = require('marionette');
-    var vent = require('built/app/vent').vent;
-    var modals = require('built/app/modals');
-    var activity = require('built/app/activity');
-    var keys = require('built/app/keys');
-    var app = require('app/app');
+    var $               = require('jquery');
+    var Backbone        = require('backbone');
+    var localStorage    = require('localStorage');
+    var marionette      = require('marionette');
+    var vent            = require('built/app/vent').vent;
+    var modals          = require('built/app/modals');
+    var activity        = require('built/app/activity');
+    var keys            = require('built/app/keys');
+    var app             = require('app/app');
 
     // app requirements
-    var TodoCollection = require('app/todo/collections/todos').TodoCollection;
+    var TodoCollection  = require('app/todo/collections/todos').TodoCollection;
     var todo_collection = new TodoCollection();
 
-    var HeaderView = require('app/todo/views/header').HeaderView;
-    var MainView = require('app/todo/views/main').MainView;
-    var FooterView = require('app/todo/views/footer').FooterView;
+    // app views
+    var HeaderView      = require('app/todo/views/header').HeaderView;
+    var MainView        = require('app/todo/views/main').MainView;
+    var FooterView      = require('app/todo/views/footer').FooterView;
 
     var AppController = marionette.Controller.extend({
 
@@ -26,8 +27,6 @@ define(function(require, exports, module) {
             // You can customize that as necessary.
             this.BUILT();
             this.app = app;
-
-            window.todo_collection = todo_collection;
 
             // instantiate views
             var header_view = new HeaderView({
@@ -47,28 +46,18 @@ define(function(require, exports, module) {
         },
 
         index: function() {
-
             todo_collection.reset();
             todo_collection.fetch();
-
-            console.log('This is index route');
-
         },
 
         active: function() {
-
             todo_collection.fetch();
             todo_collection.reset(todo_collection.displayActiveTasks());
-
-            console.log('#active');
         },
 
         completed: function() {
-
             todo_collection.fetch();
             todo_collection.reset(todo_collection.displayCompletedTasks());
-
-            console.log('#completed');
         },
 
         BUILT: function() {

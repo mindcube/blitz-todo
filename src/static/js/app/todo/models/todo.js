@@ -11,6 +11,10 @@ define(function(require, exports, module) {
 
         toggle: function () {
             return this.set('completed', !this.get('completed'));
+        },
+
+        isCompleted: function () {
+            return this.get('completed');
         }
     });
 

@@ -7,16 +7,12 @@ define(function(require, exports, module) {
         template: footerTemplate,
 
         ui: {
-            count: '#todo-count strong'
+            count: '#todo-count strong',
+            clear: '#clear-completed'
         },
 
         events: {
-            'click #clear-completed': 'clearCompleted',
-        },
-
-        initialize: function () {
-            //this.listenTo(this.collection, 'all', this.update, this);
-            // this.listenTo(this.collection, 'all remove', this.update, this);
+            'click @ui.clear': 'clearCompleted',
         },
 
         update: function () {
@@ -30,7 +26,10 @@ define(function(require, exports, module) {
         },
 
         clearCompleted: function() {
-            console.log(this);
+            var completed = this.collection.getCompleted();
+            completed.forEach(function (todo) {
+                todo.destroy();
+            });
         }
     });
 

@@ -25,6 +25,14 @@ define(function(require, exports, module) {
                 if (task.get('completed'))
                     return true;
             });
+        },
+
+        getCompleted: function () {
+            return this.filter(this._isCompleted);
+        },
+
+        _isCompleted: function (todo) {
+            return todo.isCompleted();
         }
     });
 
